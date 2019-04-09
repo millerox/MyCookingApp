@@ -26,4 +26,8 @@
     <string name="label_food">Food</string>
     <string name="label_drinks">Drinks</string>
     <string name="label_no_account">Don\'t have an account?</string>
+
+    <!-->Temporary names<-->
+    <string name="recipe_name">Italian Pizza</string>
+
 </resources>
