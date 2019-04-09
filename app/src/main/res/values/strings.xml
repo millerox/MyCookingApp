@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">MyCookingApp</string>
+
+    <!-->Hints for placeholders<-->
+    <string name="hint_recipe_name">Recipe Name</string>
+    <string name="hint_enter_recipe">Enter Recipe</string>
+    <string name="hint_for_email">Email</string>
+    <string name="hint_for_password">Password</string>
+    <string name="hint_forgot_password">Forgot your password?</string>
+    <string name="hint_ingredient">Ingredient</string>
+
+    <!-->Labels for buttons<-->
+    <string name="btn_clear_all_input">CLEAR</string>
+    <string name="btn_save_info">SAVE</string>
+    <string name="btn_back">BACK</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_sign_up">SIGN UP</string>
+    <string name="btn_add">ADD</string>
+    <string name="btn_submit">SUBMIT</string>
+    <string name="btn_search">SEARCH</string>
+
+    <!-->Labels for the fields names<-->
+    <string name="label_instructions">Instructions:</string>
+    <string name="label_ingredients">Ingredients:</string>
+    <string name="label_food">Food</string>
+    <string name="label_drinks">Drinks</string>
+    <string name="label_no_account">Don\'t have an account?</string>
 </resources>
