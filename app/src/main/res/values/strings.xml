@@ -27,6 +27,15 @@
     <string name="label_drinks">Drinks</string>
     <string name="label_no_account">Don\'t have an account?</string>
 
+    <!-->Menu items names<-->
+    <string name="menu_all">All Recipes</string>
+    <string name="menu_food">Food</string>
+    <string name="menu_drinks">Drinks</string>
+    <string name="menu_myrecipe">My Recipes</string>
+    <string name="menu_search">Find a Recipe</string>
+
+    <string name="menu_logout">Log Out</string>
+
     <!-->Temporary names<-->
     <string name="recipe_name">Italian Pizza</string>
 

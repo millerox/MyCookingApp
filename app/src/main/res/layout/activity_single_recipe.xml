@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGrey"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context=".SingleRecipe">
 
@@ -73,7 +73,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="249dp"
         android:text="TextView"
-        android:textColor="@color/colorDark"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
