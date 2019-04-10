@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Initializing variables:
-        btnLogin = findViewById(R.id.btn_Login);
-        btnSignup = findViewById(R.id.btn_Signup);
-        email = findViewById(R.id.user_email);
+        btnLogin = findViewById(R.id.btn_login);
+        btnSignup = findViewById(R.id.btn_signup_redirect);
+        email = findViewById(R.id.signup_email);
         password = findViewById(R.id.user_psw);
     }
 }
