@@ -7,8 +7,11 @@
     <string name="hint_enter_recipe">Enter Recipe</string>
     <string name="hint_for_email">Email</string>
     <string name="hint_for_password">Password</string>
+    <string name="hint_for_name">User Name</string>
     <string name="hint_forgot_password">Forgot your password?</string>
     <string name="hint_ingredient">Ingredient</string>
+    <string name="minimum_password">password should be minimum 6 charachters</string>
+    <string name="auth_failed">User doesn\'t exist, Please Sign Up</string>
 
     <!-->Labels for buttons<-->
     <string name="btn_clear_all_input">CLEAR</string>

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorNeutral"
     android:orientation="vertical"
-    tools:context=".SingleRecipe">
+    tools:context=".SingleRecipeActivity">
 
 
     <android.support.constraint.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="59dp"
-        android:background="@color/colorPink"
+        android:background="@color/colorMain"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/label_Ingredients"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
         android:layout_marginBottom="14dp"
         android:text="@string/label_ingredients"
         android:textAllCaps="true"
-        android:textColor="@color/colorPink"
+        android:textColor="@color/colorMain"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ingredients"
@@ -86,7 +86,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/label_instructions"
         android:textAllCaps="true"
-        android:textColor="@color/colorPink"
+        android:textColor="@color/colorMain"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/instructions"
