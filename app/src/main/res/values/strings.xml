@@ -11,7 +11,7 @@
     <string name="hint_forgot_password">Forgot your password?</string>
     <string name="hint_ingredient">Ingredient</string>
     <string name="minimum_password">password should be minimum 6 charachters</string>
-    <string name="auth_failed">User doesn\'t exist, Please Sign Up</string>
+    <string name="auth_failed">Authentication failed or User doesn\'t exist</string>
 
     <!-->Labels for buttons<-->
     <string name="btn_clear_all_input">CLEAR</string>
@@ -23,6 +23,7 @@
     <string name="btn_add">ADD</string>
     <string name="btn_submit">SUBMIT</string>
     <string name="btn_search">SEARCH</string>
+    <string name="btn_reset_psw">RESET PASSWORD</string>
 
     <!-->Labels for the fields names<-->
     <string name="label_instructions">Instructions:</string>
@@ -30,6 +31,7 @@
     <string name="label_food">Food</string>
     <string name="label_drinks">Drinks</string>
     <string name="label_no_account">Don\'t have an account?</string>
+    <string name="label_reset_pasword">Get a link to reset your password</string>
 
     <!-->Menu items names<-->
     <string name="menu_all">All Recipes</string>
@@ -44,8 +46,6 @@
     <string name="recipe_name">Italian Pizza</string>
     <string name="title_activity_sign_up">Sign in</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>

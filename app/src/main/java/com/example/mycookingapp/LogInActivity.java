@@ -31,7 +31,7 @@ public class LogInActivity extends AppCompatActivity {
         //Initializing variables:
         btnLogin = findViewById(R.id.btn_login);
         btnSignup = findViewById(R.id.btn_signup_redirect);
-        user_email = findViewById(R.id.signup_email);
+        user_email = findViewById(R.id.reset_email);
         user_psw = findViewById(R.id.user_psw);
         user_auth = FirebaseAuth.getInstance();
     }
@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        String email = user_email.getText().toString();
+        final String email = user_email.getText().toString();
         final String password = user_psw.getText().toString();
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password))
@@ -57,14 +57,11 @@ public class LogInActivity extends AppCompatActivity {
             user_auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LogInActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (!task.isSuccessful()) {
-                        // there was an error
-                        if (password.length() < 6) {
-                            user_psw.setError(getString(R.string.minimum_password));
-                        } else {
-                            Toast.makeText(LogInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                        }
-                    } else {
+                    if (!task.isSuccessful())
+                    {
+                        Toast.makeText(LogInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         Intent intent = new Intent(LogInActivity.this, SingleRecipeActivity.class);
                         startActivity(intent);
                         finish();
@@ -73,7 +70,7 @@ public class LogInActivity extends AppCompatActivity {
             });
         }
         else{
-            Toast.makeText(getApplicationContext(), "Enter email address & password!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Enter both email address & password!", Toast.LENGTH_SHORT).show();
         }
     }
 }
