@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText user_email;
     private EditText user_psw;
     private FirebaseAuth user_auth;
+    private TextView errorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +31,20 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         //Initializing variables:
+        errorText = findViewById(R.id.login_errorText);
         btnLogin = findViewById(R.id.btn_login);
         btnSignup = findViewById(R.id.btn_signup_redirect);
         user_email = findViewById(R.id.reset_email);
         user_psw = findViewById(R.id.user_psw);
         user_auth = FirebaseAuth.getInstance();
     }
-
+    //Method is called if Sign Up Button CLicked
     public void goToSignUpPage(View view)
     {
         Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
-
+    //Method is called if Reset Password link cLicked
     public void goToResetPasswordPage(View view){
         Intent intent = new Intent(LogInActivity.this, ResetPasswordActivity.class);
         startActivity(intent);
@@ -62,15 +65,24 @@ public class LogInActivity extends AppCompatActivity {
                         Toast.makeText(LogInActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                     }
                     else {
-                        Intent intent = new Intent(LogInActivity.this, SingleRecipeActivity.class);
-                        startActivity(intent);
-                        finish();
+                        //Check if the user confirmed the email
+                        if(user_auth.getCurrentUser().isEmailVerified()){
+                            //redirect to the main activity
+                            errorText.setText("");
+                            Intent intent = new Intent(LogInActivity.this, SingleRecipeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else{
+                            errorText.setText("Please verify your email.");
+                        }
                     }
                 }
             });
         }
         else{
-            Toast.makeText(getApplicationContext(), "Enter both email address & password!", Toast.LENGTH_SHORT).show();
+            //If one of inputs is empty:
+            errorText.setText("Enter both email address & password!");
         }
     }
 }
