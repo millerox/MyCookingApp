@@ -47,23 +47,36 @@ public class SignUpActivity extends AppCompatActivity {
         String email = user_email.getText().toString().trim();
         String password = user_psw.getText().toString().trim();
 
-        user_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpActivity.this,
-                new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Toast.makeText(SignUpActivity.this,"createUserWithEmail:onComplete:" + task.isSuccessful(),
-                        Toast.LENGTH_SHORT).show();
+        //Validate inputs and create a user
+        if(validateInputs(name,email,password)){
+            user_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpActivity.this,
+                    new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            sendVerification();
+                            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                            finish();
+                        }
+                        }
+                    });
+        }
+    }
 
-                if (!task.isSuccessful()) {
-                    Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    sendVerification();
-                    startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
-                    finish();
-                }
-            }
-        });
+    public boolean validateInputs(String name, String email, String password){
+        boolean validated = true;
+        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            Toast.makeText(SignUpActivity.this, "Name, email or password CAN'T BE EMPTY", Toast.LENGTH_LONG);
+            validated = false;
+        }
+        if(password.length() < 6){
+            user_psw.setError("Password can't be less than 6 characters");
+            validated = false;
+        }
+        return validated;
     }
 
     public void sendVerification(){
