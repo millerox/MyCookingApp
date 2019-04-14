@@ -10,21 +10,21 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="236dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="263dp"
         android:background="@color/colorMain"
-        app:layout_constraintBottom_toTopOf="@+id/login_errorText"
+        app:layout_constraintBottom_toTopOf="@+id/btn_google"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/logo_photo"
-            android:layout_width="207dp"
-            android:layout_height="0dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="4dp"
@@ -35,7 +35,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/logo_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/logo_name"
@@ -97,7 +98,7 @@
         android:id="@+id/btn_signup_redirect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="20dp"
         android:onClick="goToSignUpPage"
         android:text="@string/btn_sign_up"
         app:layout_constraintBottom_toTopOf="@+id/forgot_psw"
@@ -105,13 +106,14 @@
 
     <TextView
         android:id="@+id/forgot_psw"
-        android:layout_width="200dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="18dp"
+        android:layout_width="191dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
         android:onClick="goToResetPasswordPage"
         android:text="@string/hint_forgot_password"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
@@ -125,6 +127,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <Button
+        android:id="@+id/btn_google"
+        android:layout_width="208dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="182dp"
+        android:background="@color/google"
+        android:text="@string/btn_google"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgot_psw"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_facebook"
+        android:layout_width="208dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_facebook"
+        android:background="@color/facebook"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_google" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToLoginPage(View view){
-        Intent intent = new Intent(MainActivity.this, SingleRecipeActivity.class);
+        Intent intent = new Intent(MainActivity.this, LogInActivity.class);
         startActivity(intent);
     }
 }

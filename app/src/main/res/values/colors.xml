@@ -3,6 +3,8 @@
     <color name="colorMain">#FF652F</color>
     <color name="colorNeutral">#dadfe0</color>
     <color name="colorPrimary">#DD3905</color>
+    <color name="google">#B23121</color>
+    <color name="facebook">#3C5898</color>
     <color name="colorPrimaryDark">#272727</color>
     <color name="colorAccent">#2DD89C</color>
     <color name="colorWhite">#fff</color>

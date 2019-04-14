@@ -24,6 +24,8 @@
     <string name="btn_submit">SUBMIT</string>
     <string name="btn_search">SEARCH</string>
     <string name="btn_reset_psw">RESET PASSWORD</string>
+    <string name="btn_google">GOOGLE</string>
+    <string name="btn_facebook">FACEBOOK</string>
 
     <!-->Labels for the fields names<-->
     <string name="label_instructions">Instructions:</string>
@@ -45,6 +47,7 @@
     <!-->Temporary names<-->
     <string name="recipe_name">Italian Pizza</string>
     <string name="title_activity_sign_up">Sign in</string>
+
     <!-- Strings related to login -->
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
