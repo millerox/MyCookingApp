@@ -7,56 +7,79 @@
     android:background="@color/colorNeutral"
     tools:context=".SignUpActivity">
 
-    <EditText
-        android:id="@+id/reset_email"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:layout_marginBottom="22dp"
-        android:ems="10"
-        android:hint="@string/hint_for_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/signup_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/signup_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:ems="10"
-        android:hint="@string/hint_for_name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/signup_password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reset_email" />
-
-    <EditText
-        android:id="@+id/signup_password"
-        android:layout_width="0dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="114dp"
-        android:ems="10"
-        android:hint="@string/hint_for_password"
-        android:inputType="textPassword"
+        android:layout_height="315dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="28dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_name" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/signup_name"
+            android:layout_width="411dp"
+            android:layout_height="59dp"
+            android:ems="10"
+            android:hint="@string/hint_for_name"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="116dp" />
+
+        <EditText
+            android:id="@+id/reset_email"
+            android:layout_width="411dp"
+            android:layout_height="60dp"
+            android:ems="10"
+            android:hint="@string/hint_for_email"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="56dp" />
+
+        <EditText
+            android:id="@+id/signup_password"
+            android:layout_width="411dp"
+            android:layout_height="77dp"
+            android:ems="10"
+            android:hint="@string/hint_for_password"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="168dp" />
+
+        <Button
+            android:id="@+id/btn_signupGoogle"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_google"
+            android:background="@color/google"
+            android:textColor="@color/colorWhite"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/btn_signupFacebook"
+            android:layout_width="411dp"
+            android:layout_height="wrap_content"
+            android:background="@color/facebook"
+            android:text="@string/btn_facebook"
+            android:textColor="@color/colorWhite" />
+
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="187dp"
         android:layout_height="48dp"
-        android:layout_marginTop="94dp"
+        android:layout_marginTop="7dp"
         android:onClick="createFirebaseUser"
         android:text="@string/btn_sign_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
@@ -65,15 +88,15 @@
         android:background="@color/colorMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/logo_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="54dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="45dp"
             android:layout_marginBottom="54dp"
             android:src="@drawable/pizza"
             app:civ_border_color="@color/colorWhite"
@@ -87,5 +110,6 @@
 
 
     </android.support.constraint.ConstraintLayout>
+
 
 </android.support.constraint.ConstraintLayout>

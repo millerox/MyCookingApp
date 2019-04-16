@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class SingleRecipeActivity extends AppCompatActivity {
+public class SingleRecipeActivity extends BasicActivity {
 
 
 
