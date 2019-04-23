@@ -27,6 +27,10 @@ public class BasicActivity extends AppCompatActivity {
                 intent = new Intent(BasicActivity.this, SingleRecipeActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.menu_add:
+                intent = new Intent(BasicActivity.this, AddRecipe.class);
+                startActivity(intent);
+                break;
             case R.id.menu_login:
                 intent = new Intent(BasicActivity.this, LogInActivity.class);
                 startActivity(intent);

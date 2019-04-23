@@ -11,6 +11,10 @@
         android:title="Recipes"
         app:showAsAction="never"></item>
 
+    <item android:id="@+id/menu_add"
+        android:title="Recipes"
+        app:showAsAction="never"></item>
+
     <item android:id="@+id/menu_account"
         android:title="Account"
         app:showAsAction="always"
