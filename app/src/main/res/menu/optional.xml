@@ -12,7 +12,7 @@
         app:showAsAction="never"></item>
 
     <item android:id="@+id/menu_add"
-        android:title="Recipes"
+        android:title="Add New Recipe"
         app:showAsAction="never"></item>
 
     <item android:id="@+id/menu_account"
