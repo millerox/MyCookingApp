@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -53,10 +53,9 @@
             android:id="@+id/btn_signupGoogle"
             android:layout_width="411dp"
             android:layout_height="wrap_content"
-            android:text="@string/btn_google"
             android:background="@color/google"
-            android:textColor="@color/colorWhite"
-            android:layout_margin="5dp"/>
+            android:text="@string/btn_google"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btn_signupFacebook"
@@ -65,7 +64,6 @@
             android:background="@color/facebook"
             android:text="@string/btn_facebook"
             android:textColor="@color/colorWhite" />
-
 
     </LinearLayout>
 
@@ -112,4 +110,4 @@
     </android.support.constraint.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

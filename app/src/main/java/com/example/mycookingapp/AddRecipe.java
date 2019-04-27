@@ -26,7 +26,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 
 public class AddRecipe extends AppCompatActivity {
 
@@ -52,6 +54,7 @@ public class AddRecipe extends AppCompatActivity {
         btn_click = findViewById(R.id.btn_takePhoto);
         photoName = findViewById(R.id.txtName);
 
+        auth = FirebaseAuth.getInstance();
         storageRef = FirebaseStorage.getInstance().getReference();
 
         hasCamera();
@@ -80,33 +83,36 @@ public class AddRecipe extends AppCompatActivity {
             //Set imageview to photo
             photo.setImageBitmap(myPhoto);
             //Save image to the phone gallery
-            String URL = MediaStore.Images.Media.insertImage(getContentResolver(),myPhoto,strName,strName);
-
-            //insertImage method was depricated
-
-           // Uri URI = Uri.fromFile(new File(""+URL));
-
+            String URL = MediaStore.Images.Media.insertImage(getContentResolver(), myPhoto, strName, strName);
+            Uri URI = Uri.parse(URL) ;
             //Save image to Firebase:
-            //Get reference
-//            Uri file = Uri.fromFile(new File(""+URL));
-//            StorageReference photoRef = storageRef.child("images/recipes/"+strName+".jpg");
-//
-//            photoRef.putFile(file)
-//                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                            // Get a URL to the uploaded content
-//                            // Uri downloadUrl = taskSnapshot.getDownloadUrl();
-//                            Toast.makeText(AddRecipe.this,"FAILED",Toast.LENGTH_LONG).show();
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception exception) {
-//                            // Handle unsuccessful uploads
-//                            Toast.makeText(AddRecipe.this,"FAILED",Toast.LENGTH_LONG).show();
-//                        }
-//                    });
+              // TODO:Check for authenication (only authenicated users can add photos)
+
+             //  Get reference to the storage (path, where to save)
+            StorageReference photoRef = storageRef.child("images/recipes/"+strName+".jpg");
+            InputStream stream;
+            try {
+                stream = this.getContentResolver().openInputStream(URI);
+                UploadTask uploadTask = photoRef.putStream(stream);
+                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URI to the uploaded content
+                        Uri downloadUrl = taskSnapshot.getUploadSessionUri();
+                        // TODO SAVE URI TO DATABASE
+                        Log.d("AddRecepie", "Success TO UPLOAD IMAGE");
+
+                    }
+                }).addOnFailureListener(AddRecipe.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("AddRecepie", "Failure TO UPLOAD IMAGE");
+                    }
+                });
+            }
+            catch (Exception e) {
+                e.fillInStackTrace();
+            }
         }
     }
 
