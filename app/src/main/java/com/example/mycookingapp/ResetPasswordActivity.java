@@ -1,8 +1,6 @@
 package com.example.mycookingapp;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,8 +23,8 @@ public class ResetPasswordActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        btnReset = findViewById(R.id.btn_reset);
-        inputEmail = findViewById(R.id.reset_email);
+        btnReset = findViewById(R.id.btn_resetPsw_reset);
+        inputEmail = findViewById(R.id.et_signup_userEmail);
         auth = FirebaseAuth.getInstance();
 
         btnReset.setOnClickListener(new View.OnClickListener() {

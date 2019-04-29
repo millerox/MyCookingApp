@@ -2,7 +2,6 @@ package com.example.mycookingapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,9 +33,9 @@ public class SignUpActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        user_email = findViewById(R.id.reset_email);
-        user_name = findViewById(R.id.signup_name);
-        user_psw = findViewById(R.id.signup_password);
+        user_email = findViewById(R.id.et_signup_userEmail);
+        user_name = findViewById(R.id.et_signup_userName);
+        user_psw = findViewById(R.id.et_signup_userPsw);
         user_auth = FirebaseAuth.getInstance();
 
         firebaseReference = FirebaseDatabase.getInstance().getReference("users");

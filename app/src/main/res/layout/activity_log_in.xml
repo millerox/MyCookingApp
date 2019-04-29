@@ -8,6 +8,10 @@
     tools:context=".LogInActivity">
 
     <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="236dp"
@@ -15,14 +19,14 @@
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="263dp"
         android:background="@color/colorMain"
-        app:layout_constraintBottom_toTopOf="@+id/btn_google"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/logo_photo"
+            android:id="@+id/img_login_logo"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginStart="3dp"
@@ -33,13 +37,13 @@
             app:civ_border_color="@color/colorWhite"
             app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/logo_name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_login_appName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/logo_name"
+            android:id="@+id/tv_login_appName"
             android:layout_width="0dp"
             android:layout_height="118dp"
             android:layout_marginTop="39dp"
@@ -52,7 +56,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/logo_photo"
+            app:layout_constraintStart_toEndOf="@+id/img_login_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -60,7 +64,7 @@
 
 
     <EditText
-        android:id="@+id/user_psw"
+        android:id="@+id/et_login_psw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="97dp"
@@ -72,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <EditText
-        android:id="@+id/reset_email"
+        android:id="@+id/et_login_userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
@@ -80,32 +84,32 @@
         android:ems="10"
         android:hint="@string/hint_for_email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/user_psw"
-        app:layout_constraintEnd_toEndOf="@+id/user_psw" />
+        app:layout_constraintBottom_toTopOf="@+id/et_login_psw"
+        app:layout_constraintEnd_toEndOf="@+id/et_login_psw" />
 
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_login_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
         android:onClick="login"
         android:text="@string/btn_login"
-        app:layout_constraintEnd_toEndOf="@+id/user_psw"
-        app:layout_constraintTop_toBottomOf="@+id/user_psw" />
+        app:layout_constraintEnd_toEndOf="@+id/et_login_psw"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_psw" />
 
     <Button
-        android:id="@+id/btn_signup_redirect"
+        android:id="@+id/btn_login_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:onClick="goToSignUpPage"
         android:text="@string/btn_sign_up"
-        app:layout_constraintBottom_toTopOf="@+id/forgot_psw"
-        app:layout_constraintStart_toStartOf="@+id/user_psw" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_login_forgotPsw"
+        app:layout_constraintStart_toStartOf="@+id/et_login_psw" />
 
     <TextView
-        android:id="@+id/forgot_psw"
+        android:id="@+id/tv_login_forgotPsw"
         android:layout_width="191dp"
         android:layout_height="24dp"
         android:layout_marginTop="20dp"
@@ -115,10 +119,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_login" />
 
     <TextView
-        android:id="@+id/login_errorText"
+        android:id="@+id/tv_login_errorText"
         android:layout_width="211dp"
         android:layout_height="0dp"
         android:layout_marginBottom="429dp"
@@ -129,7 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <Button
-        android:id="@+id/btn_google"
+        android:id="@+id/btn_login_google"
         android:layout_width="208dp"
         android:layout_height="37dp"
         android:layout_marginBottom="182dp"
@@ -140,11 +144,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgot_psw"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_forgotPsw"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btn_facebook"
+        android:id="@+id/btn_login_facebook"
         android:layout_width="208dp"
         android:layout_height="37dp"
         android:layout_marginStart="100dp"
@@ -153,6 +157,7 @@
         android:background="@color/facebook"
         android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_google" />
 
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -2,7 +2,6 @@ package com.example.mycookingapp;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -31,11 +30,11 @@ public class LogInActivity extends BasicActivity {
         setContentView(R.layout.activity_log_in);
 
         //Initializing variables:
-        errorText = findViewById(R.id.login_errorText);
-        btnLogin = findViewById(R.id.btn_login);
-        btnSignup = findViewById(R.id.btn_signup_redirect);
-        user_email = findViewById(R.id.reset_email);
-        user_psw = findViewById(R.id.user_psw);
+        errorText = findViewById(R.id.tv_login_errorText);
+        btnLogin = findViewById(R.id.btn_login_login);
+        btnSignup = findViewById(R.id.btn_login_signup);
+        user_email = findViewById(R.id.et_signup_userEmail);
+        user_psw = findViewById(R.id.et_login_psw);
         user_auth = FirebaseAuth.getInstance();
     }
     //Method is called if Sign Up Button CLicked
