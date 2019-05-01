@@ -32,7 +32,7 @@ public class BasicActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.menu_login:
-                intent = new Intent(BasicActivity.this, LogInActivity.class);
+                intent = new Intent(BasicActivity.this, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.menu_signup:

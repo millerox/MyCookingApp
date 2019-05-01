@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mycookingapp.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -19,9 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends BasicActivity {
 
-    private EditText user_email;
-    private EditText user_name;
-    private EditText user_psw;
+    private EditText et_userName;
+    private EditText et_userEmail;
+    private EditText et_userPsw;
+
     private FirebaseAuth user_auth;
     private FirebaseUser current_user;
 
@@ -33,18 +35,35 @@ public class SignUpActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        user_email = findViewById(R.id.et_signup_userEmail);
-        user_name = findViewById(R.id.et_signup_userName);
-        user_psw = findViewById(R.id.et_signup_userPsw);
+        //Initializing views:
+        et_userName = findViewById(R.id.et_signup_userName);
+        et_userEmail = findViewById(R.id.et_signup_userEmail);
+        et_userPsw = findViewById(R.id.et_signup_userPsw);
         user_auth = FirebaseAuth.getInstance();
-
+        //Initializing variables:
         firebaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
 
+    public void onClick_signup(View view) {
+        Intent intent;
+        String email = et_userEmail.getText().toString().trim();
+        String password = et_userPsw.getText().toString().trim();
+        switch (view.getId()){
+            case R.id.btn_signup_signup:
+
+                break;
+            case R.id.btn_signup_google:
+                break;
+            case R.id.btn_signup_facebook:
+                break;
+        }
+    }
+
+
     public void createFirebaseUser(View view){
-        String name = user_name.getText().toString();
-        String email = user_email.getText().toString().trim();
-        String password = user_psw.getText().toString().trim();
+        String name = et_userName.getText().toString();
+        String email = et_userEmail.getText().toString().trim();
+        String password = et_userPsw.getText().toString().trim();
 
         //Validate inputs and create a user
         if(validateInputs(name,email,password)){
@@ -57,7 +76,7 @@ public class SignUpActivity extends BasicActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             sendVerification();
-                            startActivity(new Intent(SignUpActivity.this, LogInActivity.class));
+                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                             finish();
                         }
                         }
@@ -72,7 +91,7 @@ public class SignUpActivity extends BasicActivity {
             validated = false;
         }
         if(password.length() < 6){
-            user_psw.setError("Password can't be less than 6 characters");
+            et_userPsw.setError("Password can't be less than 6 characters");
             validated = false;
         }
         return validated;
@@ -97,24 +116,25 @@ public class SignUpActivity extends BasicActivity {
 
     public void saveUserToDatabase(View view) // To Database
     {
-        String name = user_name.getText().toString();
-        String email = user_email.getText().toString();
-        String password = user_psw.getText().toString();
+        String name = et_userName.getText().toString();
+        String email = et_userEmail.getText().toString();
+        String password = et_userPsw.getText().toString();
         boolean verified = false;
 
         if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) )
         {
             String id = firebaseReference.push().getKey();
-            User user = new User(id,name,password,email,verified);
+            User user = new User(email,password);
             firebaseReference.child(id).setValue(user);
             //Clear the input fields
-            user_name.setText("");
-            user_email.setText("");
-            user_psw.setText("");
+            et_userName.setText("");
+            et_userEmail.setText("");
+            et_userPsw.setText("");
         }
         else
         {
             Toast.makeText(SignUpActivity.this,"Field(s) are empty",Toast.LENGTH_LONG).show();
         }
     }
+
 }

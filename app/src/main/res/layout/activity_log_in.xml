@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorNeutral"
-    tools:context=".LogInActivity">
+    tools:context=".LoginActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="236dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:onClick="login"
+        android:onClick="onClick_login"
         android:text="@string/btn_login"
         app:layout_constraintEnd_toEndOf="@+id/et_login_psw"
         app:layout_constraintTop_toBottomOf="@+id/et_login_psw" />
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:onClick="goToSignUpPage"
+        android:onClick="onClick_login"
         android:text="@string/btn_sign_up"
         app:layout_constraintBottom_toTopOf="@+id/tv_login_forgotPsw"
         app:layout_constraintStart_toStartOf="@+id/et_login_psw" />
@@ -113,7 +113,7 @@
         android:layout_width="191dp"
         android:layout_height="24dp"
         android:layout_marginTop="20dp"
-        android:onClick="goToResetPasswordPage"
+        android:onClick="onClick_login"
         android:text="@string/hint_forgot_password"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -139,6 +139,7 @@
         android:layout_marginBottom="182dp"
         android:background="@color/google"
         android:text="@string/btn_google"
+        android:onClick="onClick_login"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,6 +155,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="8dp"
         android:text="@string/btn_facebook"
+        android:onClick="onClick_login"
         android:background="@color/facebook"
         android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="parent"
