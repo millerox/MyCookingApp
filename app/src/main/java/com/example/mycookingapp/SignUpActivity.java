@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mycookingapp.model.User;
+import com.example.mycookingapp.presenter.SignupPresenter;
+import com.example.mycookingapp.presenter.iSignupPresenter;
+import com.example.mycookingapp.view.iSignupView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -18,17 +21,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUpActivity extends BasicActivity {
+import es.dmoral.toasty.Toasty;
+
+public class SignUpActivity extends BasicActivity implements iSignupView {
 
     private EditText et_userName;
     private EditText et_userEmail;
     private EditText et_userPsw;
 
-    private FirebaseAuth user_auth;
-    private FirebaseUser current_user;
+    private iSignupPresenter signupPresenter;
 
     DatabaseReference firebaseReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,102 +42,38 @@ public class SignUpActivity extends BasicActivity {
         et_userName = findViewById(R.id.et_signup_userName);
         et_userEmail = findViewById(R.id.et_signup_userEmail);
         et_userPsw = findViewById(R.id.et_signup_userPsw);
-        user_auth = FirebaseAuth.getInstance();
         //Initializing variables:
-        firebaseReference = FirebaseDatabase.getInstance().getReference("users");
+        signupPresenter = new SignupPresenter(this);
     }
 
     public void onClick_signup(View view) {
         Intent intent;
+        String name = et_userName.getText().toString();
         String email = et_userEmail.getText().toString().trim();
         String password = et_userPsw.getText().toString().trim();
         switch (view.getId()){
             case R.id.btn_signup_signup:
-
+                signupPresenter.doSignup(this,name,email,password);
                 break;
             case R.id.btn_signup_google:
+                signupPresenter.doSignupGoogle();
                 break;
             case R.id.btn_signup_facebook:
+                signupPresenter.doSignupFacebook();
                 break;
         }
     }
 
-
-    public void createFirebaseUser(View view){
-        String name = et_userName.getText().toString();
-        String email = et_userEmail.getText().toString().trim();
-        String password = et_userPsw.getText().toString().trim();
-
-        //Validate inputs and create a user
-        if(validateInputs(name,email,password)){
-            user_auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(SignUpActivity.this,
-                    new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            sendVerification();
-                            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                            finish();
-                        }
-                        }
-                    });
-        }
+    @Override
+    public void onSignupError(String message) {
+        Toasty.error(this,message,Toasty.LENGTH_LONG).show();
     }
 
-    public boolean validateInputs(String name, String email, String password){
-        boolean validated = true;
-        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-            Toast.makeText(SignUpActivity.this, "Name, email or password CAN'T BE EMPTY", Toast.LENGTH_LONG);
-            validated = false;
-        }
-        if(password.length() < 6){
-            et_userPsw.setError("Password can't be less than 6 characters");
-            validated = false;
-        }
-        return validated;
+    @Override
+    public void onSignupSuccess(String message) {
+        Toasty.success(this,message,Toasty.LENGTH_LONG).show();
+        //Go to Login Page
+        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
-
-    public void sendVerification(){
-        current_user = user_auth.getCurrentUser();
-        current_user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(SignUpActivity.this, "Verification code send to " + current_user.getEmail()+ ". Confirm your email and login",
-                        Toast.LENGTH_LONG).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SignUpActivity.this, "Verification FAILED to sent to " + current_user.getEmail(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void saveUserToDatabase(View view) // To Database
-    {
-        String name = et_userName.getText().toString();
-        String email = et_userEmail.getText().toString();
-        String password = et_userPsw.getText().toString();
-        boolean verified = false;
-
-        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) )
-        {
-            String id = firebaseReference.push().getKey();
-            User user = new User(email,password);
-            firebaseReference.child(id).setValue(user);
-            //Clear the input fields
-            et_userName.setText("");
-            et_userEmail.setText("");
-            et_userPsw.setText("");
-        }
-        else
-        {
-            Toast.makeText(SignUpActivity.this,"Field(s) are empty",Toast.LENGTH_LONG).show();
-        }
-    }
-
 }

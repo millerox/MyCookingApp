@@ -38,4 +38,10 @@ public class User implements iUser  {
     public String getName() {
         return user_name;
     }
+
+
+    @Override
+    public boolean isEmailVerified() {
+        return firebaseAuth.getCurrentUser().isEmailVerified();
+    }
 }

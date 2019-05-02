@@ -7,5 +7,4 @@ public interface iLoginPresenter {
     void doLogin(Activity activity, String email, String password);
     void doLoginFacebook();
     void doLoginGoogle();
-    boolean isEmailVerified();
 }

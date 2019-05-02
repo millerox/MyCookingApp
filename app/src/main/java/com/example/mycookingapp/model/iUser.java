@@ -5,5 +5,6 @@ public interface iUser {
     String getEmail();
     String getPassword();
     String getName();
+    boolean isEmailVerified();
 }
 

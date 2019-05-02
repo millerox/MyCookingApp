@@ -3,16 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:id="@+id/menu_search"
-        android:title="Search"
+    <item android:id="@+id/menu_allRecipes"
+        android:title="All Recipes"
         app:showAsAction="never"></item>
 
-    <item android:id="@+id/menu_recipes"
-        android:title="Recipes"
+    <item android:id="@+id/menu_myRecipes"
+        android:title="My Recipes"
         app:showAsAction="never"></item>
 
     <item android:id="@+id/menu_add"
         android:title="Add New Recipe"
+        app:showAsAction="never"></item>
+
+    <item android:id="@+id/menu_search"
+        android:title="Search"
         app:showAsAction="never"></item>
 
     <item android:id="@+id/menu_account"
@@ -20,14 +24,11 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_account_white">
         <menu>
-            <item android:id="@+id/menu_login"
-                android:title="Log In"
-                app:showAsAction="never"></item>
-            <item android:id="@+id/menu_signup"
-                android:title="Sign up"
-                app:showAsAction="never"></item>
             <item android:id="@+id/menu_resetPsw"
                 android:title="Reset Password"
+                app:showAsAction="never"></item>
+            <item android:id="@+id/menu_login_logout"
+                android:title=""
                 app:showAsAction="never"></item>
         </menu>
     </item>

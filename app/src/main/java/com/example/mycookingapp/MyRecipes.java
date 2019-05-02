@@ -3,7 +3,7 @@ package com.example.mycookingapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MyRecipes extends AppCompatActivity {
+public class MyRecipes extends BasicActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
