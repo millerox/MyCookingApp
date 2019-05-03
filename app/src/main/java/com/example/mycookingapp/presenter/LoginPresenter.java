@@ -1,15 +1,27 @@
 package com.example.mycookingapp.presenter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
+import com.example.mycookingapp.R;
 import com.example.mycookingapp.model.User;
 import com.example.mycookingapp.view.iLoginView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.net.InterfaceAddress;
 
@@ -22,7 +34,7 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
         this.loginView = loginView;
         firebaseAuth = FirebaseAuth.getInstance();
     }
-
+    // EMAIL & PASSWORD LOGIN
     @Override
     public void doLogin(Activity activity, String email, String password) {
         final int errorCode = isValidData(email,password);
@@ -45,16 +57,6 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
         }
     }
 
-    @Override
-    public void doLoginFacebook() {
-
-    }
-
-    @Override
-    public void doLoginGoogle() {
-
-    }
-
     public void showErrorMessage(int errorCode) {
         switch (errorCode) {
             case ERROR_FIELDS_EMPTY:
@@ -72,6 +74,46 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
             default:
                 break;
         }
+    }
+    //GOOGLE SIGN IN
+    @Override
+    public void doLoginGoogle(Activity activity, GoogleSignInClient client, int RC_SIGN_IN) {
+        Intent signInIntent = client.getSignInIntent();
+        activity.startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void handleGoogleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try { // Google Signed in successfully, authenticate with Firebase.
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            firebaseAuthWithGoogle(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            loginView.onLoginError("Google Sign is Failed");
+        }
+    }
+
+    public void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            loginView.onLoginSuccess("Hello, " + user.getDisplayName());
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            loginView.onLoginError("Google Sign in Error");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void doLoginFacebook() {
+
     }
 
     @Override

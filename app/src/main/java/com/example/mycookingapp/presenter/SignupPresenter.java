@@ -12,6 +12,7 @@ import com.example.mycookingapp.SignUpActivity;
 import com.example.mycookingapp.model.User;
 import com.example.mycookingapp.view.iLoginView;
 import com.example.mycookingapp.view.iSignupView;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;

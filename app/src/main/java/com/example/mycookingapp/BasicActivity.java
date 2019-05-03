@@ -1,5 +1,6 @@
 package com.example.mycookingapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -35,36 +36,34 @@ public class BasicActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case R.id.menu_allRecipes:
-                intent = new Intent(BasicActivity.this, SingleRecipeActivity.class);
-                startActivity(intent);
+                redirectToActivity(this,SingleRecipeActivity.class);
                 break;
             case R.id.menu_myRecipes:
-                intent = new Intent(BasicActivity.this, MyRecipes.class);
-                startActivity(intent);
+                redirectToActivity(this,MyRecipes.class);
                 break;
             case R.id.menu_search:
-                intent = new Intent(BasicActivity.this, SingleRecipeActivity.class);
-                startActivity(intent);
+                redirectToActivity(this,SingleRecipeActivity.class);
                 break;
             case R.id.menu_add:
-                intent = new Intent(BasicActivity.this, AddRecipe.class);
-                startActivity(intent);
+                redirectToActivity(this,AddRecipe.class);
                 break;
             case R.id.menu_login_logout:
-                if(firebaseAuth.getCurrentUser()!= null){
-                    //If logged in
+                if(firebaseAuth.getCurrentUser()!= null){ //If logged in
                     firebaseAuth.signOut();
-                } //Go to Login Page
-                intent = new Intent(BasicActivity.this, LoginActivity.class);
-                startActivity(intent);
+                }
+                redirectToActivity(this,LoginActivity.class);
                 break;
             case R.id.menu_resetPsw:
-                intent = new Intent(BasicActivity.this, ResetPasswordActivity.class);
-                startActivity(intent);
+                redirectToActivity(this,ResetPasswordActivity.class);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    public void redirectToActivity(Activity firstActivity, Class finalActivity){
+        Intent intent = new Intent(firstActivity,finalActivity);
+        firstActivity.startActivity(intent);
     }
 }
