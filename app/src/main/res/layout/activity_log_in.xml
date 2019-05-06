@@ -153,18 +153,18 @@
         app:layout_constraintVertical_bias="0.0" />
 
 
-    <com.facebook.login.widget.LoginButton
-        android:onClick="onClick_login"
-        android:id="@+id/btn_login_facebook"
-        android:layout_width="208dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/facebook"
-        android:text="@string/btn_facebook"
-        android:textColor="@color/colorWhite"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_google"/>
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_login_facebook"
+            android:layout_width="208dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="8dp"
+            android:onClick="onClick_login"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:paddingLeft="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_google" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
