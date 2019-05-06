@@ -8,6 +8,7 @@
     <color name="colorPrimaryDark">#272727</color>
     <color name="colorAccent">#2DD89C</color>
     <color name="colorWhite">#fff</color>
+    <color name="button">#72000000</color>
 
     <!-->Pink: #E8E12D59<-->
     <!-->Orange: #FF652F<-->
