@@ -37,8 +37,6 @@ public class RecipesActivity extends BasicActivity implements iRecipeView {
 
     private FirebaseSingleton firebase = FirebaseSingleton.getInstance();
     List<Recipe> recipeList;
-    private ArrayList<ImageView> mImageViews;
-    private ArrayList<TextView> mTextViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +48,13 @@ public class RecipesActivity extends BasicActivity implements iRecipeView {
         rb_food = findViewById(R.id.radioButton_recipes_food);
         listViewRecipes = findViewById(R.id.listView_recipes_result);
         // Initialize variables
-        smPICTURE_NOT_AVAILABLE = "https://www.themezzaninegroup.com/wp-content/uploads/2017/12/photo-not-available.jpg";
         recipeList = new ArrayList<>();
-        mImageViews = new ArrayList<>();
-        mTextViews = new ArrayList<>();
         recipeSearch = new RecipeSearch();
         firebase.databaseReference = firebase.database.getReference("recipes");
+        //First load displays all recipes
         displayRecipes();
+        //OnCheck methods call for radio buttons:
+
     }
 
     @Override
@@ -66,7 +64,6 @@ public class RecipesActivity extends BasicActivity implements iRecipeView {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot recipeSnaphot: dataSnapshot.getChildren()){
                     recipeList.addAll(recipeSearch.getAllRecipes(recipeSnaphot));
-                    //TODO you have to add elements from recipeList to the primary ArrayList
                 }
                 RecipeAdapter adapter = new RecipeAdapter(RecipesActivity.this,recipeList);
                 listViewRecipes.setAdapter(adapter);
