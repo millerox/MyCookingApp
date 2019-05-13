@@ -3,13 +3,10 @@ package com.example.mycookingapp.presenter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.mycookingapp.R;
-import com.example.mycookingapp.model.User;
+import com.example.mycookingapp.singleton.FirebaseSingleton;
 import com.example.mycookingapp.view.iLoginView;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -17,33 +14,25 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.net.InterfaceAddress;
 
 public class LoginPresenter extends InputValidation implements iLoginPresenter {
 
     private iLoginView loginView;
-    private FirebaseAuth firebaseAuth;
-    private AuthCredential credential;
-    private FirebaseUser user;
+    private FirebaseSingleton firebase;
 
     public LoginPresenter(iLoginView loginView){
         this.loginView = loginView;
-        firebaseAuth = FirebaseAuth.getInstance();
+        firebase = FirebaseSingleton.getInstance();
     }
     // EMAIL & PASSWORD LOGIN
     @Override
@@ -54,7 +43,7 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
             showErrorMessage(errorCode);
         }else {
             //TODO check for internet connection
-            firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            firebase.authentication.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
@@ -106,14 +95,14 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-        credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-        firebaseAuth.signInWithCredential(credential)
+        firebase.credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        firebase.authentication.signInWithCredential(firebase.credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            user = firebaseAuth.getCurrentUser();
-                            loginView.onLoginSuccess("Hello, " + user.getDisplayName());
+                            firebase.user = firebase.authentication.getCurrentUser();
+                            loginView.onLoginSuccess("Hello, " + firebase.user.getDisplayName());
                         } else {
                             // If sign in fails, display a message to the user.
                             loginView.onLoginError("Google Sign in Error");
@@ -148,13 +137,13 @@ public class LoginPresenter extends InputValidation implements iLoginPresenter {
         Log.d("debug", "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        firebaseAuth.signInWithCredential(credential)
+        firebase.authentication.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            FirebaseUser user = firebase.authentication.getCurrentUser();
                             loginView.onLoginSuccess("Hello, " + user.getDisplayName());
                         } else {
                             // If sign in fails, display a message to the user.

@@ -12,6 +12,7 @@ import com.example.mycookingapp.model.User;
 import com.example.mycookingapp.presenter.SignupPresenter;
 import com.example.mycookingapp.presenter.iSignupPresenter;
 import com.example.mycookingapp.view.iSignupView;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -31,8 +32,6 @@ public class SignUpActivity extends BasicActivity implements iSignupView {
 
     private iSignupPresenter signupPresenter;
 
-    DatabaseReference firebaseReference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +46,6 @@ public class SignUpActivity extends BasicActivity implements iSignupView {
     }
 
     public void onClick_signup(View view) {
-        Intent intent;
         String name = et_userName.getText().toString();
         String email = et_userEmail.getText().toString().trim();
         String password = et_userPsw.getText().toString().trim();
@@ -56,10 +54,10 @@ public class SignUpActivity extends BasicActivity implements iSignupView {
                 signupPresenter.doSignup(this,name,email,password);
                 break;
             case R.id.btn_signup_google:
-                signupPresenter.doSignupGoogle();
+               // signupPresenter.doSignupGoogle();
                 break;
             case R.id.btn_signup_facebook:
-                signupPresenter.doSignupFacebook();
+               // signupPresenter.doSignupFacebook();
                 break;
         }
     }
@@ -73,7 +71,6 @@ public class SignUpActivity extends BasicActivity implements iSignupView {
     public void onSignupSuccess(String message) {
         Toasty.success(this,message,Toasty.LENGTH_LONG).show();
         //Go to Login Page
-        Intent intent = new Intent(SignUpActivity.this,LoginActivity.class);
-        startActivity(intent);
+        redirectToActivity(SignUpActivity.this, LoginActivity.class);
     }
 }

@@ -32,6 +32,7 @@
     <!-->Labels for the fields names<-->
     <string name="label_instructions">Instructions:</string>
     <string name="label_ingredients">Ingredients:</string>
+    <string name="label_all">All</string>
     <string name="label_food">Food</string>
     <string name="label_drinks">Drinks</string>
     <string name="label_no_account">Don\'t have an account?</string>
@@ -39,8 +40,6 @@
 
     <!-->Menu items names<-->
     <string name="menu_all">All Recipes</string>
-    <string name="menu_food">Food</string>
-    <string name="menu_drinks">Drinks</string>
     <string name="menu_myrecipe">My Recipes</string>
     <string name="menu_search">Find a Recipe</string>
 

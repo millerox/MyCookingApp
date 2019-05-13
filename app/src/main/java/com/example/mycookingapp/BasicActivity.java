@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class BasicActivity extends AppCompatActivity {
 
@@ -36,10 +35,10 @@ public class BasicActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case R.id.menu_allRecipes:
-                redirectToActivity(this,SingleRecipeActivity.class);
+                redirectToActivity(this,RecipesActivity.class);
                 break;
             case R.id.menu_myRecipes:
-                redirectToActivity(this,MyRecipes.class);
+                redirectToActivity(this, RecipesActivity.class);
                 break;
             case R.id.menu_search:
                 redirectToActivity(this,SingleRecipeActivity.class);
