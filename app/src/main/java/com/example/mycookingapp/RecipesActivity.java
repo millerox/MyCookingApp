@@ -1,21 +1,13 @@
 package com.example.mycookingapp;
 
-import android.content.Context;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
 import com.example.mycookingapp.model.Recipe;
-import com.example.mycookingapp.presenter.RecipeAdapter;
+import com.example.mycookingapp.model.RecipeAdapter;
 import com.example.mycookingapp.presenter.RecipeSearch;
 import com.example.mycookingapp.singleton.FirebaseSingleton;
 import com.example.mycookingapp.view.iRecipeView;
@@ -28,43 +20,51 @@ import java.util.List;
 
 public class RecipesActivity extends BasicActivity implements iRecipeView {
 
-    private static String smPICTURE_NOT_AVAILABLE;
-    private RadioButton rb_allRecipes;
-    private RadioButton rb_food;
-    private RadioButton rb_drinks;
     private ListView listViewRecipes;
     private RecipeSearch recipeSearch;
+    private List<Recipe> recipeList;
 
     private FirebaseSingleton firebase = FirebaseSingleton.getInstance();
-    List<Recipe> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
-        //Initializing Views
-        rb_allRecipes = findViewById(R.id.radioButton_recipes_all);
-        rb_drinks = findViewById(R.id.radioButton_recipes_drink);
-        rb_food = findViewById(R.id.radioButton_recipes_food);
+        //Initializing View
         listViewRecipes = findViewById(R.id.listView_recipes_result);
         // Initialize variables
         recipeList = new ArrayList<>();
         recipeSearch = new RecipeSearch();
         firebase.databaseReference = firebase.database.getReference("recipes");
-        //First load displays all recipes
-        displayRecipes();
-        //OnCheck methods call for radio buttons:
-
     }
 
     @Override
-    public void displayRecipes() {
+    protected void onStart() {
+        super.onStart();
+        //Display all recipes on the first load
+        updateRecipeList();
+
+    }
+
+    public void onCheckedChanged(View view) {
+        switch (view.getId()){
+            case R.id.radioButton_recipes_all:
+                displayRecipes(recipeList);
+                break;
+            case R.id.radioButton_recipes_food:
+                displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,true));
+                break;
+            case R.id.radioButton_recipes_drink:
+                displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,false));
+                break;
+        }
+    }
+
+    public void updateRecipeList(){
         firebase.databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot recipeSnaphot: dataSnapshot.getChildren()){
-                    recipeList.addAll(recipeSearch.getAllRecipes(recipeSnaphot));
-                }
+            public void onDataChange(@NonNull DataSnapshot recipes) {
+                recipeList.addAll(recipeSearch.getAllRecipes(recipes));
                 RecipeAdapter adapter = new RecipeAdapter(RecipesActivity.this,recipeList);
                 listViewRecipes.setAdapter(adapter);
             }
@@ -73,5 +73,11 @@ public class RecipesActivity extends BasicActivity implements iRecipeView {
                 Log.d("DatabaseError", databaseError.getDetails());
             }
         });
+    }
+
+    @Override
+    public void displayRecipes(List<Recipe> recipeList) {
+        RecipeAdapter adapter = new RecipeAdapter(RecipesActivity.this,recipeList);
+        listViewRecipes.setAdapter(adapter);
     }
 }

@@ -11,31 +11,33 @@ public class RecipeSearch implements iRecipeSearch {
 
     private FirebaseSingleton firebase = FirebaseSingleton.getInstance();
 
-    public List<Recipe> getAllRecipes(DataSnapshot snapshotUserID){
+    @Override
+    public List<Recipe> getAllRecipes(DataSnapshot allRecipes){
         List<Recipe> recipeList = new ArrayList<>();
-        for (DataSnapshot recipeID : snapshotUserID.getChildren()){
-            Recipe recipe = new Recipe();
-            recipe.setRecipe_userId(snapshotUserID.getKey());
-            recipe.setRecipe_name(recipeID.getKey());
-            for (final DataSnapshot attributes : recipeID.getChildren()){
-                recipe.setRecipe_id(attributes.getKey());
-                recipe.setRecipe_imageURL(attributes.child("imageURL").getValue().toString());
-                recipe.setRecipe_steps(attributes.child("steps").getValue().toString());
-                recipe.setRecipe_category(attributes.child("category").getValue().toString());
-                recipe.setRecipe_ingredients(attributes.child("ingredients").getValue().toString());
-            }
-            recipeList.add(recipe);
+        for(DataSnapshot recipesOfUser: allRecipes.getChildren()) {
+            for (DataSnapshot recipeID : recipesOfUser.getChildren()) {
+                for (final DataSnapshot recipeSnapshot : recipeID.getChildren()) {
+                    Recipe recipe = recipeSnapshot.getValue(Recipe.class);
+                    recipeList.add(recipe);
+                }
+           }
         }
         return recipeList;
     }
 
     @Override
-    public void searchRecipeByCategory(DataSnapshot snapshot, boolean category) {
-
+    public List<Recipe> filterRecipeByCategory(List<Recipe> recipeList, boolean category) {
+        List<Recipe> filteredList = new ArrayList<>();
+        for(Recipe recipe: recipeList){
+            if(recipe.getCategory() == category){
+                filteredList.add(recipe);
+            }
+        }
+        return filteredList;
     }
 
     @Override
-    public void searchRecipeByUser(String userID) {
-
+    public List<Recipe> filterRecipeByUser(String userID) {
+        return null;
     }
 }

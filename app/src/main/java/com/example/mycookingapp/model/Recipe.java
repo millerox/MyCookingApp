@@ -1,83 +1,64 @@
 package com.example.mycookingapp.model;
 
+import java.util.ArrayList;
+
 public class Recipe implements iRecipe {
-    private String recipe_name;
-    private String recipe_userId;
-    private String recipe_id;
-    private String recipe_imageURL;
-    private String recipe_steps;
-    private String recipe_category;
-    private String recipe_ingredients;
+    private String name;
+    private String imageURL;
+    private String steps;
+    private boolean category;
+    private ArrayList<String> ingredients;
 
 
     public Recipe(){
 
     }
 
-    public Recipe(String userID, String recipeID, String name, String imageURL,
-                  String steps, String ingredients, String category ){
-        this.recipe_userId = userID;
-        this.recipe_id = recipeID;
-        this.recipe_name = name;
-        this.recipe_imageURL = imageURL;
-        this.recipe_steps = steps;
-        this.recipe_ingredients = ingredients;
-        this.recipe_category = category;
+    public Recipe(String name, String imageURL, String steps, ArrayList<String> ingredients, boolean category ){
+        this.name = name;
+        this.imageURL = imageURL;
+        this.steps = steps;
+        this.ingredients = ingredients;
+        this.category = category;
     }
 
-    public String getRecipe_name() {
-        return recipe_name;
+    public String getName() {
+        return name;
     }
 
-    public void setRecipe_name(String recipe_name) {
-        this.recipe_name = recipe_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getRecipe_userId() {
-        return recipe_userId;
+    public String getImageURL() {
+        return imageURL;
     }
 
-    public void setRecipe_userId(String recipe_userId) {
-        this.recipe_userId = recipe_userId;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
-    public String getRecipe_id() {
-        return recipe_id;
+    public String getSteps() {
+        return steps;
     }
 
-    public void setRecipe_id(String recipe_id) {
-        this.recipe_id = recipe_id;
+    public void setSteps(String steps) {
+        this.steps = steps;
     }
 
-    public String getRecipe_imageURL() {
-        return recipe_imageURL;
+    public boolean getCategory() {
+        return category;
     }
 
-    public void setRecipe_imageURL(String recipe_imageURL) {
-        this.recipe_imageURL = recipe_imageURL;
+    public void setCategory(boolean category) {
+        this.category = category;
     }
 
-    public String getRecipe_steps() {
-        return recipe_steps;
+    public ArrayList<String> getIngredients() {
+        return ingredients;
     }
 
-    public void setRecipe_steps(String recipe_steps) {
-        this.recipe_steps = recipe_steps;
-    }
-
-    public String getRecipe_category() {
-        return recipe_category;
-    }
-
-    public void setRecipe_category(String recipe_category) {
-        this.recipe_category = recipe_category;
-    }
-
-    public String getRecipe_ingredients() {
-        return recipe_ingredients;
-    }
-
-    public void setRecipe_ingredients(String recipe_ingredients) {
-        this.recipe_ingredients = recipe_ingredients;
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }

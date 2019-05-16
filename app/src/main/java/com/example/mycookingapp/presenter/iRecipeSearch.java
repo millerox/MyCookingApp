@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface iRecipeSearch {
     List<Recipe> getAllRecipes(DataSnapshot snapshot);
-    void searchRecipeByCategory(DataSnapshot snapshot, boolean category);
-    void searchRecipeByUser(String userID);
-
+    List<Recipe> filterRecipeByCategory(List<Recipe> recipeList, boolean category);
+    List<Recipe> filterRecipeByUser(String userID);
 }

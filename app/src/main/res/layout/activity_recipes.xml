@@ -10,6 +10,7 @@
     <RadioGroup
         android:id="@+id/radioGroup_recipes"
         android:layout_width="match_parent"
+        android:onClick="onCheckedChanged"
         android:layout_height="20dp"
         android:layout_marginTop="30dp"
         android:orientation="horizontal"
