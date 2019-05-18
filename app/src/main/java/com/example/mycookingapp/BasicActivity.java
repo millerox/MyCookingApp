@@ -35,10 +35,10 @@ public class BasicActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()){
             case R.id.menu_allRecipes:
-                redirectToActivity(this,RecipesActivity.class);
+                redirectToActivity(this, frgAllRecipes.class);
                 break;
             case R.id.menu_myRecipes:
-                redirectToActivity(this, RecipesActivity.class);
+                redirectToActivity(this, frgAllRecipes.class);
                 break;
             case R.id.menu_search:
                 redirectToActivity(this,SingleRecipeActivity.class);

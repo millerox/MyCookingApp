@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    tools:context=".RecipesActivity"
+    tools:context=".frgAllRecipes"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RadioGroup
-        android:id="@+id/radioGroup_recipes"
+        android:id="@+id/radioGroup_recipes_category"
         android:layout_width="match_parent"
         android:onClick="onCheckedChanged"
         android:layout_height="20dp"

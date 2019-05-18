@@ -85,7 +85,7 @@ public class LoginActivity extends BasicActivity implements iLoginView {
     @Override
     public void onLoginSuccess(String message) {
         Toasty.success(this,message,Toasty.LENGTH_LONG).show();
-        redirectToActivity(this, RecipesActivity.class);
+        redirectToActivity(this, frgAllRecipes.class);
         //TODO Check if email is verified when person wants to add a recipe
     }
 

@@ -20,17 +20,16 @@ public class RecipeAdapter extends ArrayAdapter<Recipe> {
     private List<Recipe>recipeList;
 
     public RecipeAdapter(Activity context, List<Recipe>recipeList){
-        super(context, R.layout.custom_view,recipeList);
+        super(context, R.layout.custom_view_recipes,recipeList);
         this.context = context;
         this.recipeList = recipeList;
     }
-
 
     @Nullable
     @Override
     public View getView(int position, @Nullable View convertView, @Nullable ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View customView = inflater.inflate(R.layout.custom_view,null,true);
+        View customView = inflater.inflate(R.layout.custom_view_recipes,null,true);
 
         TextView recipeName = (TextView)customView.findViewById(R.id.tv_recipes_description);
         ImageView recipePhoto = (ImageView)customView.findViewById(R.id.img_recipes_photo);
