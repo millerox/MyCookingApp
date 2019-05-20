@@ -19,6 +19,7 @@ import com.example.mycookingapp.singleton.FirebaseSingleton;
 import com.example.mycookingapp.view.iRecipeView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class frgAllRecipes extends Fragment implements iRecipeView {
     private List<Recipe> recipeList;
 
     private FirebaseSingleton firebase = FirebaseSingleton.getInstance();
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
@@ -41,73 +43,37 @@ public class frgAllRecipes extends Fragment implements iRecipeView {
         radioGroupCategory = view.findViewById(R.id.radioGroup_recipes_category);
         listViewRecipes = view.findViewById(R.id.listView_recipes_result);
         // Initialize variables
+        databaseReference = firebase.database.getReference("recipes");
         recipeList = new ArrayList<>();
         recipeSearch = new RecipeSearch();
-        firebase.databaseReference = firebase.database.getReference("recipes");
         //Set Radio Group onChecked Listener:
         radioGroupCategory.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.radioButton_recipes_all:
-                        displayRecipes(recipeList);
+                        displayRecipes(recipeList,listViewRecipes);
                         break;
                     case R.id.radioButton_recipes_food:
-                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,true));
+                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,true),listViewRecipes);
                         break;
                     case R.id.radioButton_recipes_drink:
-                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,false));
+                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,false),listViewRecipes);
                         break;
                 }
             }
         });
+        updateRecipeList(this.getActivity());
         return view;
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.frg_recipes);
-//        //Initializing Views
-//        radioGroupCategory = findViewById(R.id.radioGroup_recipes_category);
-//        listViewRecipes = findViewById(R.id.listView_recipes_result);
-//        // Initialize variables
-//        recipeList = new ArrayList<>();
-//        recipeSearch = new RecipeSearch();
-//        firebase.databaseReference = firebase.database.getReference("recipes");
-//        //Set Radio Group onChecked Listener:
-//        radioGroupCategory.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId){
-//                    case R.id.radioButton_recipes_all:
-//                        displayRecipes(recipeList);
-//                        break;
-//                    case R.id.radioButton_recipes_food:
-//                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,true));
-//                        break;
-//                    case R.id.radioButton_recipes_drink:
-//                        displayRecipes(recipeSearch.filterRecipeByCategory(recipeList,false));
-//                        break;
-//                }
-//            }
-//        });
-//    }
-
     @Override
-    public void onStart() {
-        super.onStart();
-        //Display all recipes on the first load
-        updateRecipeList(this.getActivity());
-
-    }
-
     public void updateRecipeList(final Activity activity){
-        firebase.databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot recipes) {
                 recipeList.addAll(recipeSearch.getAllRecipes(recipes));
-                RecipeAdapter adapter = new RecipeAdapter(activity,recipeList);
+                RecipeAdapter adapter = new RecipeAdapter(activity, recipeList);
                 listViewRecipes.setAdapter(adapter);
             }
             @Override
@@ -118,7 +84,7 @@ public class frgAllRecipes extends Fragment implements iRecipeView {
     }
 
     @Override
-    public void displayRecipes(List<Recipe> recipeList) {
+    public void displayRecipes(List<Recipe> recipeList, ListView listViewRecipes) {
         RecipeAdapter adapter = new RecipeAdapter(this.getActivity(),recipeList);
         listViewRecipes.setAdapter(adapter);
     }

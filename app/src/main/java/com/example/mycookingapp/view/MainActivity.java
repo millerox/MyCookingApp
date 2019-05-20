@@ -37,4 +37,5 @@ public class MainActivity extends BasicActivity {
         adapter.addFragment(new frgSearch(),"Search");
         viewPager.setAdapter(adapter);
     }
+
 }

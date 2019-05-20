@@ -8,6 +8,10 @@ public class User implements iUser  {
     private String user_name;
     private String user_id;
 
+    public User(){
+
+    }
+
     public User(String user_id, String user_name)
     {
         this.user_id = user_id;

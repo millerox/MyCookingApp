@@ -8,17 +8,20 @@
 
     <TextView
         android:id="@+id/tv_myRecipes_msg"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="221dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/msg_no_recipes_yet"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_myRecipes_redirect"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +32,6 @@
         android:layout_marginStart="57dp"
         android:layout_marginEnd="57dp"
         android:layout_marginBottom="305dp"
-        android:onClick="redirect"
         android:text="@string/btn_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

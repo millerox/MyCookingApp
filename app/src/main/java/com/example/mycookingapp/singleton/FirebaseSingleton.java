@@ -3,7 +3,6 @@ package com.example.mycookingapp.singleton;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseSingleton {
@@ -12,7 +11,6 @@ public class FirebaseSingleton {
 
     public FirebaseDatabase database;
     public FirebaseAuth authentication;
-    public DatabaseReference databaseReference;
     public FirebaseUser user;
     public AuthCredential credential;
 

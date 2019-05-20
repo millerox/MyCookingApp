@@ -9,7 +9,6 @@ public class Recipe implements iRecipe {
     private boolean category;
     private ArrayList<String> ingredients;
 
-
     public Recipe(){
 
     }
