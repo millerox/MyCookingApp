@@ -36,6 +36,7 @@ public class frgMyRecipes extends frgAllRecipes {
     private FirebaseAuth firebaseAuth;
     private boolean isUserRegistered;
     private boolean hasRecipes;
+    private View view;
     // 1. Set of variables for the First Scenario
     private TextView tv_msg;
     private Button btn_login_or_add;
@@ -49,7 +50,7 @@ public class frgMyRecipes extends frgAllRecipes {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frg_my_recipes_empty, container, false);
         //Initialite variables
         firebase = FirebaseSingleton.getInstance();
@@ -81,7 +82,6 @@ public class frgMyRecipes extends frgAllRecipes {
             btn_login_or_add.setText("LOGIN");
         } else {
             //If user has recipes, display the recipes, otherwise set onClick Listener for button
-            //TODO: MAKE CHECK IF HAS RECIPES
             userID = firebaseAuth.getCurrentUser().getUid();
             hasRecipes = true;
 
