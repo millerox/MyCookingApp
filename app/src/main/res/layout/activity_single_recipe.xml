@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,105 +9,114 @@
     tools:context=".SingleRecipeActivity">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_marginBottom="61dp"
-        android:background="@color/colorMain"
-        app:layout_constraintBottom_toTopOf="@+id/label_ingredients"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginBottom="61dp"
+            android:background="@color/colorMain"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_label_ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_singleRecipe_name"
+                android:layout_width="198dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="Pizza"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.122" />
+        </android.support.constraint.ConstraintLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_singleRecipe_photo"
+            android:layout_width="150dp"
+            android:layout_height="155dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="52dp"
+            android:src="@drawable/pizza"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/recipeName"
-            android:layout_width="205dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="16dp"
-            android:text="Pizza"
-            android:textAlignment="center"
+            android:id="@+id/tv_singleRecipe_label_ingredients"
+            android:layout_width="184dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/label_ingredients"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textColor="@color/colorMain"
+            android:textSize="20sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_ingredients"
+            app:layout_constraintEnd_toEndOf="@+id/img_login_logo"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_singleRecipe_ingredients"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+        <TextView
+            android:id="@+id/tv_singleRecipe_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_label_steps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_singleRecipe_label_ingredients" />
+
+        <TextView
+            android:id="@+id/tv_singleRecipe_label_steps"
+            android:layout_width="184dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/label_instructions"
+            android:textAllCaps="true"
+            android:textColor="@color/colorMain"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_steps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_singleRecipe_ingredients" />
+
+        <TextView
+            android:id="@+id/tv_singleRecipe_steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="32dp"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.122" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_singleRecipe_label_steps" />
+
     </android.support.constraint.ConstraintLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/img_login_logo"
-        android:layout_width="150dp"
-        android:layout_height="155dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="52dp"
-        android:src="@drawable/pizza"
-        app:civ_border_color="@color/colorWhite"
-        app:civ_border_width="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/label_ingredients"
-        android:layout_width="184dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="13dp"
-        android:text="@string/label_ingredients"
-        android:textAllCaps="true"
-        android:textColor="@color/colorMain"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ingredients"
-        app:layout_constraintEnd_toEndOf="@+id/img_login_logo"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ingredients"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
-
-    <TextView
-        android:id="@+id/ingredients"
-        android:layout_width="379dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginBottom="10dp"
-        android:text="TextView"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/label_instructions"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_ingredients" />
-
-    <TextView
-        android:id="@+id/label_instructions"
-        android:layout_width="184dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/label_instructions"
-        android:textAllCaps="true"
-        android:textColor="@color/colorMain"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/instructions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredients" />
-
-    <TextView
-        android:id="@+id/instructions"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="32dp"
-        android:text="TextView"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_instructions" />
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
