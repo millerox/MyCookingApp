@@ -5,7 +5,7 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.List;
 
-public interface iRecipeSearch {
+public interface iRecipeSearchPresenter {
     List<Recipe> getAllRecipes(DataSnapshot snapshot);
     List<Recipe> getUserRecipes(DataSnapshot snapshot);
     List<Recipe> filterRecipeByCategory(List<Recipe> recipeList, boolean category);

@@ -2,12 +2,14 @@ package com.example.mycookingapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mycookingapp.presenter.LoginPresenter;
 import com.example.mycookingapp.presenter.iLoginPresenter;
+import com.example.mycookingapp.view.MainActivity;
 import com.example.mycookingapp.view.iLoginView;
 import com.facebook.CallbackManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -80,12 +82,13 @@ public class LoginActivity extends BasicActivity implements iLoginView {
     @Override
     public void onLoginError(String message) {
         Toasty.error(this,message,Toasty.LENGTH_LONG).show();
+        Log.d("database error","b");
     }
 
     @Override
     public void onLoginSuccess(String message) {
         Toasty.success(this,message,Toasty.LENGTH_LONG).show();
-        redirectToActivity(this, frgAllRecipes.class);
+        redirectToActivity(this, MainActivity.class);
         //TODO Check if email is verified when person wants to add a recipe
     }
 

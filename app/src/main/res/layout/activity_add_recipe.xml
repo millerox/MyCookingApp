@@ -1,46 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddRecipe">
+    android:background="@color/colorNeutral"
+    android:orientation="vertical"
+    tools:context=".SingleRecipeActivity">
 
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="107dp"
-        android:layout_marginBottom="34dp"
-        android:text="TextView"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/photo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/photo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginEnd="66dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_takePhoto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName"
-        tools:srcCompat="@tools:sample/backgrounds/scenic[0]" />
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginBottom="61dp"
+            android:background="@color/colorMain"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_label_ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btn_takePhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="215dp"
-        android:onClick="takePhoto"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/photo" />
-</android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/et_addRecipe_name"
+                android:layout_width="198dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:hint="@string/hint_recipe_name"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.122" />
+        </android.support.constraint.ConstraintLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_addRecipe_photo"
+            android:layout_width="150dp"
+            android:layout_height="155dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="52dp"
+            android:src="@drawable/ic_add_a_photo_grey"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_singleRecipe_label_ingredients"
+            android:layout_width="184dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="13dp"
+            android:text="@string/label_ingredients"
+            android:textAllCaps="true"
+            android:textColor="@color/colorMain"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_addRecipe_ingredients"
+            app:layout_constraintEnd_toEndOf="@+id/img_login_logo"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/et_addRecipe_ingredients"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+        <EditText
+            android:id="@+id/et_addRecipe_ingredients"
+            android:layout_width="0dp"
+            android:layout_height="131dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="top"
+            android:hint="@string/hint_ingredient"
+            android:scrollbars="vertical"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_singleRecipe_label_steps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_singleRecipe_label_ingredients" />
+
+        <TextView
+            android:id="@+id/tv_singleRecipe_label_steps"
+            android:layout_width="184dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/label_instructions"
+            android:textAllCaps="true"
+            android:textColor="@color/colorMain"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/et_addRecipe_steps"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_addRecipe_ingredients" />
+
+        <EditText
+            android:id="@+id/et_addRecipe_steps"
+            android:layout_width="0dp"
+            android:layout_height="212dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="top"
+            android:hint="@string/hint_enter_recipe"
+            android:scrollbars="vertical"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_addRecipe_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_singleRecipe_label_steps" />
+
+        <Button
+            android:id="@+id/btn_addRecipe_add"
+            android:layout_width="153dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/btn_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>

@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeSearch implements iRecipeSearch {
+public class RecipeSearch implements iRecipeSearchPresenter {
 
     private FirebaseSingleton firebase = FirebaseSingleton.getInstance();
     private DatabaseReference databaseReference;

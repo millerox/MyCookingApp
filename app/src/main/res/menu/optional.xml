@@ -2,35 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <item android:id="@+id/menu_allRecipes"
-        android:title="All Recipes"
-        app:showAsAction="never"></item>
-
-    <item android:id="@+id/menu_myRecipes"
-        android:title="My Recipes"
-        app:showAsAction="never"></item>
-
-    <item android:id="@+id/menu_add"
-        android:title="Add New Recipe"
-        app:showAsAction="never"></item>
-
-    <item android:id="@+id/menu_search"
-        android:title="Search"
-        app:showAsAction="never"></item>
-
     <item android:id="@+id/menu_account"
         android:title="Account"
         app:showAsAction="always"
         android:icon="@drawable/ic_account_white">
         <menu>
-            <item android:id="@+id/menu_resetPsw"
+            <item android:id="@+id/menuItem_resetPsw"
                 android:title="Reset Password"
                 app:showAsAction="never"></item>
-            <item android:id="@+id/menu_login_logout"
+            <item android:id="@+id/menuItem_login_logout"
                 android:title=""
                 app:showAsAction="never"></item>
         </menu>
+    </item>
+
+    <item android:id="@+id/menu_addRecipe"
+        android:title="Add New Recipe"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_a_recipe_white">
+        <menu>
+            <item android:id="@+id/menuItem_add"
+                android:title="@string/btn_add"
+                app:showAsAction="never"></item>
+        </menu>
+
     </item>
 
 </menu>

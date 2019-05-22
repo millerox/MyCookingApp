@@ -68,7 +68,7 @@ public class frgMyRecipes extends frgAllRecipes {
             @Override
             public void onClick(View v) {
                 if (isUserRegistered) {
-                    Intent intent = new Intent(getActivity(), AddRecipe.class);
+                    Intent intent = new Intent(getActivity(), AddRecipeActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(getActivity(), LoginActivity.class);

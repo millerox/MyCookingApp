@@ -9,7 +9,7 @@
     <string name="hint_for_password">Password</string>
     <string name="hint_for_name">User Name</string>
     <string name="hint_forgot_password">Forgot your password?</string>
-    <string name="hint_ingredient">Ingredient</string>
+    <string name="hint_ingredient">Enter ingredient and their quantity</string>
     <string name="minimum_password">password should be minimum 6 charachters</string>
     <string name="auth_failed">Authentication failed or User doesn\'t exist</string>
 
@@ -20,7 +20,7 @@
     <string name="btn_logout">LOGOUT</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_sign_up">SIGN UP</string>
-    <string name="btn_add">ADD NEW RECIPE </string>
+    <string name="btn_add">ADD RECIPE </string>
     <string name="btn_submit">SUBMIT</string>
     <string name="btn_search">SEARCH</string>
     <string name="btn_reset_psw">RESET PASSWORD</string>

@@ -19,11 +19,13 @@ public class BasicActivity extends AppCompatActivity {
         inflater.inflate(R.menu.optional,menu);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        MenuItem menu_login_logout = menu.findItem(R.id.menu_login_logout);
-        MenuItem menu_resetPsw = menu.findItem(R.id.menu_resetPsw);
+        MenuItem menu_login_logout = menu.findItem(R.id.menuItem_login_logout);
+        MenuItem menu_resetPsw = menu.findItem(R.id.menuItem_resetPsw);
+        MenuItem menu_addRecipe = menu.findItem(R.id.menuItem_add);
         if(firebaseAuth.getCurrentUser() == null) { // NOT Logged in
             menu_login_logout.setTitle("Login");
             menu_resetPsw.setEnabled(false); // disable reset password
+            menu_addRecipe.setEnabled(false); // disable add recipe
         } else {
             menu_login_logout.setTitle("Logout");
         }
@@ -34,25 +36,16 @@ public class BasicActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()){
-            case R.id.menu_allRecipes:
-                redirectToActivity(this, frgAllRecipes.class);
+            case R.id.menuItem_add:
+                redirectToActivity(this, AddRecipeActivity.class);
                 break;
-            case R.id.menu_myRecipes:
-                redirectToActivity(this, frgAllRecipes.class);
-                break;
-            case R.id.menu_search:
-                redirectToActivity(this,SingleRecipeActivity.class);
-                break;
-            case R.id.menu_add:
-                redirectToActivity(this,AddRecipe.class);
-                break;
-            case R.id.menu_login_logout:
+            case R.id.menuItem_login_logout:
                 if(firebaseAuth.getCurrentUser()!= null){ //If logged in
                     firebaseAuth.signOut();
                 }
                 redirectToActivity(this,LoginActivity.class);
                 break;
-            case R.id.menu_resetPsw:
+            case R.id.menuItem_resetPsw:
                 redirectToActivity(this,ResetPasswordActivity.class);
                 break;
             default:

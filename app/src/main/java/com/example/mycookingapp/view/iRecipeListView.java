@@ -7,7 +7,7 @@ import com.example.mycookingapp.model.Recipe;
 
 import java.util.List;
 
-public interface iRecipeView {
+public interface iRecipeListView {
     void updateRecipeList(final Activity activity);
     void displayRecipes(List<Recipe> recipeList, ListView listViewRecipes);
 }

@@ -16,7 +16,7 @@ import com.example.mycookingapp.model.Recipe;
 import com.example.mycookingapp.model.RecipeAdapter;
 import com.example.mycookingapp.presenter.RecipeSearch;
 import com.example.mycookingapp.singleton.FirebaseSingleton;
-import com.example.mycookingapp.view.iRecipeView;
+import com.example.mycookingapp.view.iRecipeListView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class frgAllRecipes extends Fragment implements iRecipeView {
+public class frgAllRecipes extends Fragment implements iRecipeListView {
 
     private ListView listViewRecipes;
     private RadioGroup radioGroupCategory;
